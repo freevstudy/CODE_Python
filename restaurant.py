@@ -4,6 +4,7 @@
 创建一个名为describe_restaurant()的方法和一个名为open_restaurant()的方法。
 其中前者打印前述两项信息，而后者打印一条消息，指出餐馆正在营业。
 根据这一类创建一个名为restaurant的实例，分别打印两个属性，再调用前述两个方法。
+增加一个就餐人数的默认值
 
 Date: 2022-04-21
 """
@@ -13,6 +14,7 @@ class Restaurant():
         """初始化饭店的属性"""
         self.name = restaurant_name
         self.type = cuisine_type
+        self.number_served = 0
 
     def describe_restaurant(self):
         print(self.name.title() + "是一家" + self.type + "。")
@@ -20,8 +22,23 @@ class Restaurant():
     def open_restaurant(self):
         print(self.name.title() + "正在营业中。")
 
+    def dinner_number(self):
+        print("现在有" + str(self.number_served) + "个人在里面就餐。")
+    
+    def set_number_served(self, number):
+        self.number_served = number
+    
+    def increment_number_served(self, add):
+        self.number_served += add
+
 restaurant = Restaurant('老盛昌汤包', '面食店')
 print(restaurant.name)
 print(restaurant.type)
 restaurant.describe_restaurant()
 restaurant.open_restaurant()
+
+restaurant.set_number_served(300)
+restaurant.dinner_number()
+
+restaurant.increment_number_served(50)
+restaurant.dinner_number()
