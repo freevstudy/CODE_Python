@@ -127,3 +127,104 @@ while True:
     elif album_num == 'q':
         break
 ```
+8-9 创建一个包含魔术师名字的列表，并将其传递给一个名为show_magicians()的函数，这个函数打印列表中每个魔术师的名字。
+```python
+def show_magicians(magicians_name):
+    """显示魔术师的名字"""
+    print("\n下面出场的魔术师有：")
+    for magician_name in magicians_name:
+        print(magician_name)
+
+magicians_name = ['Eric', 'Alice', '刘谦']
+show_magicians(magicians_name)
+```
+8-10 在8-9的基础上，编写一个名为make_great()的函数，对魔术师列表进行修改，在每个魔术师的名字都加入字样“the Great”。调用函数show_magicians()。确认魔术师的列表确实变了。
+```python
+def make_great(magicians_name, modify_magicians_name):
+    """伟大的魔术师"""
+    while magicians_name:
+        current_name = magicians_name.pop()
+
+        modify_magicians_name.append('了不起的' + current_name)
+
+def show_magicians(modify_magicians_name):
+    """显示魔术师的名字"""
+    print("\n下面出场的魔术师有：")
+    for modify_magician_name in modify_magicians_name:
+        print(modify_magician_name)
+
+magicians_name = ['Eric', 'Alice', '刘谦']
+modify_magicians_name = []
+
+make_great(magicians_name, modify_magicians_name)
+show_magicians(modify_magicians_name)
+```
+8-11 修改8-10的程序，在调用函数make_great()时，向它传递魔术师列表的副本。由于不想修改原始列表，请返回修改后的列表，并将其存储到另一个列表中。分贝使用这两个列表来调用show_magicians()，确认一个里列表包含的时原来的魔术师名字，而另一个包含的是添加了字样“the Great”的魔术师的名字。
+```python
+def make_great(magicians_name, modify_magicians_name):
+    """伟大的魔术师"""
+    while magicians_name:
+        current_name = magicians_name.pop()
+
+        modify_magicians_name.append('了不起的' + current_name)
+
+def show_magicians(modify_magicians_name):
+    """显示魔术师的名字"""
+    print("\n下面出场的魔术师有：")
+    for modify_magician_name in modify_magicians_name:
+        print(modify_magician_name)
+
+magicians_name = ['Eric', 'Alice', '刘谦']
+modify_magicians_name = []
+
+make_great(magicians_name[:], modify_magicians_name)
+show_magicians(modify_magicians_name)
+show_magicians(magicians_name)
+```
+8-12 编写一个函数，它接受顾客要在三明治中添加的一系列食材。这个函数只有一个形参（它收集函数调用中提供的所有食材），并打印一条消息，对顾客点的三明治进行概述。调用这个函数三次，每次都提供不同数量的实参。
+```python
+def make_sandwichs(*toppings):
+    """三明治的食材"""
+    print("\n制作一个三明治，顾客需要以下食材：")
+    for topping in toppings:
+        print("-" + topping)
+
+make_sandwichs('生菜', '沙拉')
+make_sandwichs('洋葱', '牛排', '芝士')
+make_sandwichs('鸡排', '番茄')
+```
+8-13 复制案例的程序user_profile.py，在其中调用build_profile()来创建有关你的简介；调用这个函数时，指定你的名和姓，以及三个描述你的键-值对。
+```python
+def build_profile(first, last, **user_info):
+    """创建一个字典，其中包含我们知道的有关用户的一切"""
+    profile = {}
+    profile['first_name'] = first
+    profile['last_name'] = last
+    for key, value in user_info.items():
+        profile[key] = value
+    return profile
+
+user_profile = build_profile('lance', 'wu',
+                            location='shanghai',
+                            job='logistics',
+                            commute='bus')
+print(user_profile)
+```
+8-14 编写一个函数，将一辆汽车的信息存储在一个字典中。这个函数总是接受制造商和型号，还接受任意数量的关键字实参。这样调用这个函数：提供必不可少的信息，以及两个名称-值对，如颜色和选装配件。这个函数必须能够像下面这样进行调用：
+
+car = make_car('subaru', 'outback', color='blue', tow_package=True)
+
+打印返回的字典，确认正确地处理了所有的信息。
+```python
+def make_cars(maker, type, **car_info):
+    """包含了我们想知道汽车的一切信息"""
+    car_files = {}
+    car_files['maker_name'] = maker
+    car_files['type_name'] = type
+    for key, value in car_info.items():
+        car_files[key] = value
+    return car_files
+
+car = make_cars('subaru', 'outback', color='blue', tow_package=True)
+print(car)
+```
