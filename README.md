@@ -7,7 +7,7 @@
 4. 判断分支if
 5. python字典
 6. 获取用户输入和while循环
-  - 输入信息用input()函数
+  - 输入信息用input()和int()函数,input()函数用于输入字符，int()函数用于输入数值。
   - while循环会不断的运行，直到指定的条件不满足为止
 7. python函数
 8. python类
